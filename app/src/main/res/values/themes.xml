@@ -114,9 +114,7 @@
     </style>
 
     <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
-        <item name="enableEdgeToEdge">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">?colorSurfaceContainer</item>
+        <item name="backgroundTint">?colorSurfaceContainer</item>
     </style>
 
     <style name="Day.Theme.Splash" parent="PreV31Day.Theme.Splash" />
