@@ -13,14 +13,14 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import uk.akane.omni.R
 import uk.akane.omni.logic.checkSensorAvailability
 import uk.akane.omni.ui.MainActivity
 import uk.akane.omni.ui.components.SpiritLevelView
 import uk.akane.omni.ui.components.SwitchBottomSheet
 import uk.akane.omni.ui.fragments.settings.MainSettingsFragment
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlin.math.asin
 import kotlin.math.sqrt
 

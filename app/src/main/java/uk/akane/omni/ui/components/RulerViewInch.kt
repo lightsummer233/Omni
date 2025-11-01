@@ -6,9 +6,9 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
-import uk.akane.omni.logic.dpToPx
 import com.google.android.material.color.MaterialColors
 import uk.akane.omni.R
+import uk.akane.omni.logic.dpToPx
 
 class RulerViewInch @JvmOverloads constructor(
     context: Context,

@@ -11,18 +11,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.preference.PreferenceManager
-import uk.akane.omni.R
-import uk.akane.omni.ui.MainActivity
-import uk.akane.omni.ui.components.SwitchBottomSheet
-import uk.akane.omni.ui.fragments.settings.MainSettingsFragment
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.slider.Slider
+import uk.akane.omni.R
+import uk.akane.omni.ui.MainActivity
+import uk.akane.omni.ui.components.SwitchBottomSheet
+import uk.akane.omni.ui.fragments.settings.MainSettingsFragment
 
 
 class FlashlightFragment : BaseFragment() {
@@ -152,9 +153,9 @@ class FlashlightFragment : BaseFragment() {
                         }
                         .setPositiveButton(resources.getString(R.string.accept)) { _, _ ->
                             flashlightSlider.isEnabled = true
-                            prefs.edit()
-                                .putBoolean("flashlight_acknowledged", true)
-                                .apply()
+                            prefs.edit {
+                                putBoolean("flashlight_acknowledged", true)
+                            }
                             turnOnTorch(value)
                             switchTrackColor(value)
                         }
@@ -218,14 +219,14 @@ class FlashlightFragment : BaseFragment() {
             ColorStateList.valueOf(
                 MaterialColors.getColor(
                     flashlightSlider,
-                    com.google.android.material.R.attr.colorError
+                    androidx.appcompat.R.attr.colorError
                 )
             )
         flashlightSlider.trackActiveTintList =
             ColorStateList.valueOf(
                 MaterialColors.getColor(
                     flashlightSlider,
-                    com.google.android.material.R.attr.colorError
+                    androidx.appcompat.R.attr.colorError
                 )
             )
     }
@@ -235,14 +236,14 @@ class FlashlightFragment : BaseFragment() {
             ColorStateList.valueOf(
                 MaterialColors.getColor(
                     flashlightSlider,
-                    com.google.android.material.R.attr.colorPrimary
+                    androidx.appcompat.R.attr.colorPrimary
                 )
             )
         flashlightSlider.trackActiveTintList =
             ColorStateList.valueOf(
                 MaterialColors.getColor(
                     flashlightSlider,
-                    com.google.android.material.R.attr.colorPrimary
+                    androidx.appcompat.R.attr.colorPrimary
                 )
             )
     }

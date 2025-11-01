@@ -1,14 +1,18 @@
 package uk.akane.omni.ui.components
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.withRotation
+import com.google.android.material.color.MaterialColors
 import uk.akane.omni.R
 import uk.akane.omni.logic.dpToPx
-import com.google.android.material.color.MaterialColors
 import kotlin.math.absoluteValue
 import kotlin.math.max
 import kotlin.math.min
@@ -61,7 +65,7 @@ class SpiritLevelView @JvmOverloads constructor(
     private val roundCorner = 16f.dpToPx(context)
 
     init {
-        colorPrimary = MaterialColors.getColor(this, com.google.android.material.R.attr.colorPrimary)
+        colorPrimary = MaterialColors.getColor(this, androidx.appcompat.R.attr.colorPrimary)
         colorOnPrimary = MaterialColors.getColor(this, com.google.android.material.R.attr.colorOnPrimary)
         colorTertiary = MaterialColors.getColor(this, com.google.android.material.R.attr.colorTertiary)
         colorOnTertiary = MaterialColors.getColor(this, com.google.android.material.R.attr.colorOnTertiary)
@@ -188,18 +192,17 @@ class SpiritLevelView @JvmOverloads constructor(
         angle: Float,
         paint: Paint
     ) {
-        canvas.save()
-        canvas.rotate(angle, width / 2f, height / 2f)
-        canvas.drawRoundRect(
-            0f,
-            height - (height / 2 * min(transformValue, 1f)),
-            width.toFloat(),
-            height.toFloat() * 2,
-            roundCorner,
-            roundCorner,
-            paint
-        )
-        canvas.restore()
+        canvas.withRotation(angle, width / 2f, height / 2f) {
+            drawRoundRect(
+                0f,
+                height - (height / 2 * min(transformValue, 1f)),
+                width.toFloat(),
+                height.toFloat() * 2,
+                roundCorner,
+                roundCorner,
+                paint
+            )
+        }
     }
 
     private fun drawCenteredText(
@@ -209,17 +212,16 @@ class SpiritLevelView @JvmOverloads constructor(
         textAngle: Float,
         offScreenProgress: Float
     ) {
-        canvas.save()
-        canvas.rotate(textAngle, cx, cy)
-        val text =
-            if (offScreenProgress < directionalLength)
-                " ${pitchAngle.toInt().absoluteValue}°"
-            else if (offScreenProgress > directionalLength && pitch > 0)
-                " ${(- balance + 180f).toInt().absoluteValue}°"
-            else
-                " ${textAngle.toInt().absoluteValue}°"
-        canvas.drawText(text, cx, cy + (textPaint.textSize / 4), textPaint)
-        canvas.restore()
+        canvas.withRotation(textAngle, cx, cy) {
+            val text =
+                if (offScreenProgress < directionalLength)
+                    " ${pitchAngle.toInt().absoluteValue}°"
+                else if (offScreenProgress > directionalLength && pitch > 0)
+                    " ${(-balance + 180f).toInt().absoluteValue}°"
+                else
+                    " ${textAngle.toInt().absoluteValue}°"
+            drawText(text, cx, cy + (textPaint.textSize / 4), textPaint)
+        }
     }
 
     private fun drawInvertedTextLayer(

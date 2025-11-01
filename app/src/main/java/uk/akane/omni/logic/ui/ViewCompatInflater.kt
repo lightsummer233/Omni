@@ -13,7 +13,7 @@ import com.google.android.material.textview.MaterialTextView
 import com.google.android.material.theme.MaterialComponentsViewInflater
 import uk.akane.omni.R
 
-@Suppress("UNUSED") // reflection by androidx via theme attr viewInflaterClass
+@Suppress("UNUSED", "PrivateResource") // reflection by androidx via theme attr viewInflaterClass
 class ViewCompatInflater
 @JvmOverloads constructor(impl: ViewCompatInflaterImpl = ViewCompatInflaterImpl())
     : CallbackViewInflater(impl, impl) {

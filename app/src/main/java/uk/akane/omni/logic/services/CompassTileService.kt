@@ -21,6 +21,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
+import androidx.core.graphics.createBitmap
 import uk.akane.omni.R
 import kotlin.math.absoluteValue
 
@@ -51,10 +52,7 @@ class CompassTileService : TileService(), SensorEventListener {
             )
         )
         rotationIcon = AppCompatResources.getDrawable(this, R.drawable.ic_pointer)!!
-        iconBitmap = Bitmap.createBitmap(
-            rotationIcon.intrinsicWidth, rotationIcon.intrinsicHeight,
-            Bitmap.Config.ARGB_8888
-        )
+        iconBitmap = createBitmap(rotationIcon.intrinsicWidth, rotationIcon.intrinsicHeight)
     }
 
     override fun onClick() {

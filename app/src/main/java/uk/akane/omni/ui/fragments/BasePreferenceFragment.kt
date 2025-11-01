@@ -2,10 +2,10 @@ package uk.akane.omni.ui.fragments
 
 import android.content.SharedPreferences
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
+import androidx.core.graphics.drawable.toDrawable
 import androidx.preference.PreferenceFragmentCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.color.MaterialColors
@@ -29,7 +29,7 @@ abstract class BasePreferenceFragment : PreferenceFragmentCompat(),
     }
 
     override fun setDivider(divider: Drawable?) {
-        super.setDivider(ColorDrawable(Color.TRANSPARENT))
+        super.setDivider(Color.TRANSPARENT.toDrawable())
     }
 
     override fun setDividerHeight(height: Int) {

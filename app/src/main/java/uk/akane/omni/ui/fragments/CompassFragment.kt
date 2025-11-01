@@ -25,6 +25,7 @@ import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
@@ -261,11 +262,11 @@ class CompassFragment : BaseFragment(), SensorEventListener, LocationListener,
                 .setMessage(resources.getString(R.string.compass_prompt_desc))
                 .setIcon(R.drawable.ic_notifications)
                 .setNegativeButton(resources.getString(R.string.decline)) { _, _ ->
-                    prefs.edit().putBoolean("isPostNotificationPromptShown", true).apply()
+                    prefs.edit { putBoolean("isPostNotificationPromptShown", true) }
                 }
                 .setPositiveButton(resources.getString(R.string.accept)) { _, _ ->
                     requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-                    prefs.edit().putBoolean("isPostNotificationPromptShown", true).apply()
+                    prefs.edit { putBoolean("isPostNotificationPromptShown", true) }
                 }
                 .show()
         }

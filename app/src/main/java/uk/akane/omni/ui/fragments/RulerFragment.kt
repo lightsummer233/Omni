@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
+import com.google.android.material.button.MaterialButton
 import uk.akane.omni.R
 import uk.akane.omni.ui.MainActivity
 import uk.akane.omni.ui.components.SwitchBottomSheet
 import uk.akane.omni.ui.fragments.settings.MainSettingsFragment
-import com.google.android.material.button.MaterialButton
 
 class RulerFragment : BaseFragment() {
 
