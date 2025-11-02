@@ -82,5 +82,6 @@ dependencies {
     implementation(libs.androidx.preference.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.recyclerview)
     implementation(libs.material)
 }
