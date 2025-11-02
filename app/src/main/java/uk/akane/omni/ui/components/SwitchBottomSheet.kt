@@ -13,9 +13,7 @@ import uk.akane.omni.ui.fragments.FlashlightFragment
 import uk.akane.omni.ui.fragments.LevelFragment
 import uk.akane.omni.ui.fragments.RulerFragment
 
-class SwitchBottomSheet(
-    private val callFragmentType : CallFragmentType
-) : BottomSheetDialogFragment() {
+class SwitchBottomSheet : BottomSheetDialogFragment() {
 
     enum class CallFragmentType {
         COMPASS,
@@ -23,6 +21,15 @@ class SwitchBottomSheet(
         BAROMETER,
         RULER,
         FLASHLIGHT
+    }
+
+    private lateinit var callFragmentType : CallFragmentType
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.getInt("call_fragment_type")?.let {
+            callFragmentType = CallFragmentType.entries.toTypedArray()[it]
+        }
     }
 
     private lateinit var compassMaterialButton: MaterialButton
@@ -103,5 +110,4 @@ class SwitchBottomSheet(
             }
         }
     }
-
 }

@@ -26,6 +26,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
+import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
@@ -231,7 +232,9 @@ class CompassFragment : BaseFragment(), SensorEventListener, LocationListener,
         }
 
         sheetMaterialButton.setOnClickListener {
-            SwitchBottomSheet(SwitchBottomSheet.CallFragmentType.COMPASS).show(parentFragmentManager, "switch_bottom_sheet")
+            SwitchBottomSheet()
+                .apply { arguments = bundleOf("call_fragment_type" to SwitchBottomSheet.CallFragmentType.COMPASS.ordinal) }
+                .show(parentFragmentManager, "switch_bottom_sheet")
         }
 
         omniViewModel.lastKnownLocation.value?.let {

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
@@ -44,7 +45,9 @@ class RulerFragment : BaseFragment() {
         }
 
         sheetMaterialButton.setOnClickListener {
-            SwitchBottomSheet(SwitchBottomSheet.CallFragmentType.RULER).show(parentFragmentManager, "switch_bottom_sheet")
+            SwitchBottomSheet()
+                .apply { arguments = bundleOf("call_fragment_type" to SwitchBottomSheet.CallFragmentType.RULER.ordinal) }
+                .show(parentFragmentManager, "switch_bottom_sheet")
         }
         return rootView
     }

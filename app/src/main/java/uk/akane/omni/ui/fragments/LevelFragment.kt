@@ -10,6 +10,7 @@ import android.view.Surface
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
@@ -79,7 +80,9 @@ class LevelFragment : BaseFragment(), SensorEventListener {
         }
 
         sheetMaterialButton.setOnClickListener {
-            SwitchBottomSheet(SwitchBottomSheet.CallFragmentType.SPIRIT_LEVEL).show(parentFragmentManager, "switch_bottom_sheet")
+            SwitchBottomSheet()
+                .apply { arguments = bundleOf("call_fragment_type" to SwitchBottomSheet.CallFragmentType.SPIRIT_LEVEL.ordinal) }
+                .show(parentFragmentManager, "switch_bottom_sheet")
         }
 
         if (doNotHaveSensor) {

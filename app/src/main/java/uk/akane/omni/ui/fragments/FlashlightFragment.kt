@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
+import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
@@ -125,7 +126,9 @@ class FlashlightFragment : BaseFragment() {
         }
 
         sheetMaterialButton.setOnClickListener {
-            SwitchBottomSheet(SwitchBottomSheet.CallFragmentType.FLASHLIGHT).show(parentFragmentManager, "switch_bottom_sheet")
+            SwitchBottomSheet()
+                .apply { arguments = bundleOf("call_fragment_type" to SwitchBottomSheet.CallFragmentType.FLASHLIGHT.ordinal) }
+                .show(parentFragmentManager, "switch_bottom_sheet")
         }
 
         if (notSupported) {
